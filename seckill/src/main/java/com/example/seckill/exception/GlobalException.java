@@ -1,0 +1,16 @@
+package com.example.seckill.exception;
+
+import com.example.seckill.vo.RespBeanEnum;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotNull;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class GlobalException extends RuntimeException {
+    private RespBeanEnum respBeanEnum;
+}

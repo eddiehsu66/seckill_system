@@ -5,7 +5,7 @@ import com.example.seckill.mapper.UserMapper;
 import com.example.seckill.pojo.User;
 import com.example.seckill.service.UserService;
 import com.example.seckill.utils.MD5Util;
-import com.example.seckill.utils.ValidatorUtil;
+import com.example.seckill.exception.GlobalException;
 import com.example.seckill.vo.LoginVo;
 import com.example.seckill.vo.RespBean;
 import com.example.seckill.vo.RespBeanEnum;
@@ -22,19 +22,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public RespBean doLogin(LoginVo loginVo){
         String mobile = loginVo.getMobile();
         String password = loginVo.getPassword();
-        if (StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password)){
-            return RespBean.error(RespBeanEnum.LOGIN_ERROR);
-        }
-        if (!ValidatorUtil.isMobile(mobile)){
-            return RespBean.error(RespBeanEnum.MOBILE_ERROR);
-        }
+//        参数校验采用注解来写成
+//        if (StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password)){
+//            return RespBean.error(RespBeanEnum.LOGIN_ERROR);
+//        }
+//        if (!ValidatorUtil.isMobile(mobile)){
+//            return RespBean.error(RespBeanEnum.MOBILE_ERROR);
+//        }
         User user = usermapper.selectById(mobile);
         if (null == user){
-            return RespBean.error(RespBeanEnum.LOGIN_ERROR);
-        }
-
+            throw new GlobalException(RespBeanEnum.LOGIN_ERROR);
+       }
         if (!MD5Util.fromPassToDBPass(password,user.getSalt()).equals(user.getPassword())){
-            return RespBean.error(RespBeanEnum.LOGIN_ERROR);
+            throw new GlobalException(RespBeanEnum.LOGIN_ERROR);
         }
         return RespBean.success();
     }
