@@ -36,7 +36,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            return RespBean.error(RespBeanEnum.MOBILE_ERROR);
 //        }
         User user = usermapper.selectById(mobile);
-        if (null == user){
+        if (user == null){
             throw new GlobalException(RespBeanEnum.LOGIN_ERROR);
        }
         if (!MD5Util.fromPassToDBPass(password,user.getSalt()).equals(user.getPassword())){
@@ -56,7 +56,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = (User)redisTemplate.opsForValue().get("user:"+userTicket);
         if (user !=null){
             CookieUtil.setCookie(request,response,"userTicket",userTicket);
-
         }
         return user;
     }

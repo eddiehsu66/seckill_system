@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
             respBean.setMessage("参数校验异常：" + bindException.getBindingResult().getAllErrors().get(0).getDefaultMessage());
             return respBean;
         }
-//        System.out.println("异常信息" + e);
+        System.out.println("异常信息" + e);
         return RespBean.error(RespBeanEnum.ERROR);
     }
 }

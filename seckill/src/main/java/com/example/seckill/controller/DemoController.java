@@ -12,5 +12,4 @@ public class DemoController {
         model.addAttribute("name","xxxx");
         return "hello";
     }
-
 }

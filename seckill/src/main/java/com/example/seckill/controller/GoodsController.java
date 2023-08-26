@@ -6,8 +6,10 @@ import com.example.seckill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.util.StringUtils;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +22,7 @@ public class GoodsController {
     UserService userservice;
     @RequestMapping("/toList")
 //    public String toList(HttpServletRequest request,HttpServletResponse response,Model model,@CookieValue("userTicket") String ticket){
-    public String toList(Model model,User user){
+    public String toList(@RequestBody Model model, User user){
 //        if (StringUtils.isEmpty(ticket)){
 //            return "login";
 //        }

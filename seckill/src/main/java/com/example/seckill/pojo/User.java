@@ -1,5 +1,6 @@
 package com.example.seckill.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +13,6 @@ import java.util.Date;
 @TableName("t_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private Long id;
 
     private String nickname;
