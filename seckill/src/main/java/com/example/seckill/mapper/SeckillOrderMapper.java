@@ -5,4 +5,5 @@ import com.example.seckill.pojo.SeckillOrder;
 
 public interface SeckillOrderMapper extends BaseMapper<SeckillOrder> {
 
+
 }
